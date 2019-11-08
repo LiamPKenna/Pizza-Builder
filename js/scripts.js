@@ -62,15 +62,39 @@ Pizza.prototype.removeTopping = function (vegOrMeatIndex, topping) {
   return this.getCost();
 };
 
+function Wings(count) {
+  this.count = count;
+  this.cost = this.getCost();
+}
+
+Wings.prototype.getCost = function() {
+  let basePrice = 6;
+  if (this.count === 12) basePrice += 5.5;
+  this.cost = basePrice;
+  return basePrice;
+};
 
 
-const pizza1 = new Pizza(14, [["spinach"],["ham", "bacon","chicken"]]);
+const order = new Order();
+const pizza1 = new Pizza(14, [["spinach"],["ham", "bacon"]]);
+pizza1.addTopping(0,["olives","onions"]);
+const pizza2 = new Pizza(18, [["olives","green peppers"],["chicken"]]);
+const wings1 = new Wings(6);
+const wings2 = new Wings(12);
+
+
+order.addItem(pizza1);
+order.addItem(pizza2);
+order.addItem(wings1);
+order.addItem(wings2);
 console.log(pizza1);
-console.log(pizza1.getCost());
-pizza1.addTopping(0,["olives","green peppers"]);
-console.log(pizza1);
-pizza1.removeTopping(1,"chicken");
-console.log(pizza1);
+console.log(pizza2);
+console.log(order.getOrderTotal());
+order.removeItem(1);
+console.log(order.getOrderTotal());
+console.log(order);
+
+
 
 
 
