@@ -1,6 +1,28 @@
-// function Order() {
-//   this.sizeOptions = {s:10, m:12, l:14, x:18};
-// }
+function Order() {
+  this.items = []
+  this.orderTotal = 0;
+  this.idCounter = 0;
+}
+
+Order.prototype.addItem = function(item) {
+  item.id = this.idCounter;
+  this.idCounter++;
+  this.items.push(item);
+  return this.items;
+};
+
+Order.prototype.removeItem = function(id) {
+  const newItemsList = this.items.filter(item => item.id != id);
+  this.items = newItemsList;
+  return this.items;
+}
+
+Order.prototype.getOrderTotal = function() {
+  let newTotal = 0;
+  this.items.forEach(item => newTotal += item.cost);
+  this.orderTotal = newTotal;
+  return this.orderTotal;
+};
 
 function Pizza(size, toppings) {
   this.size = size;
@@ -8,7 +30,7 @@ function Pizza(size, toppings) {
   this.cost = this.getCost();
 }
 
-Pizza.prototype.getCost = function () {
+Pizza.prototype.getCost = function() {
   const toppingCost = (toppingIndex, pricePerTopping) => {
     return this.toppings[toppingIndex].length * pricePerTopping;
   }
@@ -27,7 +49,7 @@ Pizza.prototype.getCost = function () {
   return totalCost;
 };
 
-Pizza.prototype.addTopping = function (vegOrMeatIndex, toppingArray) {
+Pizza.prototype.addTopping = function(vegOrMeatIndex, toppingArray) {
   const existingToppings = this.toppings[vegOrMeatIndex];
   this.toppings[vegOrMeatIndex] = existingToppings.concat(toppingArray);
   return this.getCost();
