@@ -16,8 +16,7 @@ body {
 }
 
 .nav-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  text-align: center;
   height: 100%;
   color: #fff;
   width: 100%;

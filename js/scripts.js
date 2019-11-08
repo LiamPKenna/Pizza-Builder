@@ -91,7 +91,7 @@ const wings1 = new Wings(6);
 
 order.addItem(pizza1);
 order.addItem(wings1);
-console.log(order);
+
 
 
 
@@ -135,11 +135,6 @@ function buildCartItem(item) {
 }
 
 
-
-
-
-
-
 // UI
 $(document).ready(function() {
 
@@ -177,8 +172,9 @@ $(document).ready(function() {
     const pizza = new Pizza(pizzaSizeInput, [veggiesSelected, meatsSelected]);
     order.addItem(pizza);
     updateCart()
-    // hideCards();
-    // $("#item-selection").fadeIn();
+    $("input:checkbox").prop('checked', false);
+    hideCards();
+    $("#item-selection").fadeIn();
   });
 
   $("#add-wings").click(function() {
@@ -195,8 +191,8 @@ $(document).ready(function() {
     $("#wings-count-6").text('0');
     $("#wings-count-12").text('0');
     updateCart()
-    // hideCards();
-    // $("#item-selection").fadeIn();
+    hideCards();
+    $("#item-selection").fadeIn();
   });
 
   $("#wing-6").click(function() {
@@ -222,6 +218,29 @@ $(document).ready(function() {
     updateCart();
   });
 
+  $("#pizza-time").click(function() {
+    hideCards();
+    $("#pizza-builder").fadeIn();
+  })
+
+  $("#wing-time").click(function() {
+    hideCards();
+    $("#wing-builder").fadeIn();
+  })
+
+  $("#cart-time").click(function() {
+    hideCards();
+    $("#shopping-cart").fadeIn();
+  })
+
+  $("#go-time").click(function() {
+    hideCards();
+    $("#item-selection").fadeIn();
+  })
+
   updateCart();
+  hideCards();
+  $("#welcome").fadeIn();
+
 
 });
