@@ -24,6 +24,15 @@ Order.prototype.getOrderTotal = function() {
   return this.orderTotal;
 };
 
+Order.prototype.findItem = function(id) {
+  for (var i = 0; i < this.items.length; i++) {
+    console.log(this.items[i].id);
+    if (this.items[i].id === id) {
+      return this.items[i];
+    };
+  }
+}
+
 function Pizza(size, toppings) {
   this.size = size;
   this.toppings = toppings;
@@ -55,10 +64,10 @@ Pizza.prototype.addTopping = function(vegOrMeatIndex, toppingArray) {
   return this.getCost();
 };
 
-Pizza.prototype.removeTopping = function (vegOrMeatIndex, topping) {
-  const existingToppings = this.toppings[vegOrMeatIndex];
-  const newToppings = existingToppings.filter(t => t != topping);
-  this.toppings[vegOrMeatIndex] = newToppings;
+Pizza.prototype.removeTopping = function (topping) {
+  const vegToppings = this.toppings[0].filter(t => t != topping);
+  const meatToppings = this.toppings[1].filter(t => t != topping);
+  this.toppings = [vegToppings, meatToppings];
   return this.getCost();
 };
 
@@ -76,7 +85,7 @@ Wings.prototype.getCost = function() {
 
 
 const order = new Order();
-const pizza1 = new Pizza(14, [["spinach"],["ham", "bacon"]]);
+const pizza1 = new Pizza(14, [["Spinach"],["Ham", "Bacon"]]);
 const wings1 = new Wings(6);
 
 
@@ -94,7 +103,7 @@ function buildCartItem(item) {
         <li class="list-group-item"><button type="button" class="btn btn-danger btn-sm" item="${item.id}" value="${topping}">X</button> ${topping}</li>
       `
     });
-    const meatToppingsHtml = item.toppings[0].map(topping => {
+    const meatToppingsHtml = item.toppings[1].map(topping => {
       return `
         <li class="list-group-item"><button type="button" class="btn btn-danger btn-sm" item="${item.id}" value="${topping}">X</button> ${topping}</li>
       `
@@ -146,6 +155,7 @@ $(document).ready(function() {
     const currentTotal = order.getOrderTotal();
     const cartItems = order.items;
     $("#cart-total").text(currentTotal.toFixed(2));
+    $(".cart-items").text('');
     cartItems.forEach(item => {
       const thisItem = buildCartItem(item);
       $(".cart-items").append(thisItem);
@@ -173,7 +183,8 @@ $(document).ready(function() {
 
   $(".cart-items").on("click", ".btn-danger", function(event) {
     if (isNaN(parseInt(this.value))) {
-      const thisItem = $(this).attr("item");
+      const thisItemId = parseInt($(this).attr("item"));
+      const thisItem = order.findItem(thisItemId);
       thisItem.removeTopping($(this).val());
     } else {
       order.removeItem(parseInt(this.value));
