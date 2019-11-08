@@ -26,7 +26,6 @@ Order.prototype.getOrderTotal = function() {
 
 Order.prototype.findItem = function(id) {
   for (var i = 0; i < this.items.length; i++) {
-    console.log(this.items[i].id);
     if (this.items[i].id === id) {
       return this.items[i];
     };
@@ -84,15 +83,8 @@ Wings.prototype.getCost = function() {
 };
 
 
+// GLOBAL VARIABLE
 const order = new Order();
-const pizza1 = new Pizza(14, [["Spinach"],["Ham", "Bacon"]]);
-const wings1 = new Wings(6);
-
-
-order.addItem(pizza1);
-order.addItem(wings1);
-
-
 
 
 // TEMPLATING
@@ -150,7 +142,9 @@ $(document).ready(function() {
     const currentTotal = order.getOrderTotal();
     const cartItems = order.items;
     $("#cart-total").text(currentTotal.toFixed(2));
+    $("#nav-total").text(currentTotal.toFixed(2));
     $(".cart-items").text('');
+    $(".nav-wrap").fadeIn();
     cartItems.forEach(item => {
       const thisItem = buildCartItem(item);
       $(".cart-items").append(thisItem);
@@ -238,7 +232,6 @@ $(document).ready(function() {
     $("#item-selection").fadeIn();
   })
 
-  updateCart();
   hideCards();
   $("#welcome").fadeIn();
 

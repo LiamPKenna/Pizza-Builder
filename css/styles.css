@@ -8,31 +8,41 @@ body {
 }
 
 .nav-primary {
-  color: #fff;
   background-color: #0f5c54;
   box-shadow: 0 0 0.8125rem 0 rgba(0, 0, 0, 0.75);
   height: 80px;
   margin-bottom: 50px;
 }
 
-.nav-inner {
-  text-align: center;
-  height: 100%;
-  color: #fff;
+.filler {
   width: 100%;
+}
+
+.nav-wrap {
+  width: 100%;
+  display: none;
+}
+
+.nav-inner {
+  display: inline;
+  text-align: left;
+  height: 100%;
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.nav-inner a {
-  font-size: 30px;
-  color: #fff;
-  margin: 15px;
-  width: 100%;
+.nav-text {
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 .icon {
-  height: 90%;
+  display: inline;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 50px;
+
 }
 
 .content {
