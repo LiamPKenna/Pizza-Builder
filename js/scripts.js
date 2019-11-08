@@ -1,7 +1,6 @@
-function Order() {
-  this.sizeOptions = {s:10, m:12, l:14, x:18};
-
-}
+// function Order() {
+//   this.sizeOptions = {s:10, m:12, l:14, x:18};
+// }
 
 function Pizza(size, toppings) {
   this.size = size;
@@ -28,10 +27,25 @@ Pizza.prototype.getCost = function () {
   return totalCost;
 };
 
+Pizza.prototype.addTopping = function (vegOrMeatIndex, toppingArray) {
+  const existingToppings = this.toppings[vegOrMeatIndex];
+  this.toppings[vegOrMeatIndex] = existingToppings.concat(toppingArray);
+};
+
+Pizza.prototype.removeTopping = function (vegOrMeatIndex, topping) {
+  const existingToppings = this.toppings[vegOrMeatIndex];
+  const newToppings = existingToppings.filter(t => t != topping);
+  this.toppings[vegOrMeatIndex] = newToppings;
+};
+
 
 
 const pizza1 = new Pizza(14, [["spinach"],["ham", "bacon","chicken"]]);
 console.log(pizza1.getCost());
+console.log(pizza1);
+pizza1.addTopping(0,["olives","green peppers"]);
+console.log(pizza1.getCost());
+console.log(pizza1);
 
 
 
