@@ -115,11 +115,11 @@ body {
   margin: 15px auto;
 }
 
-.pizza-image {
+.food-image {
   overflow: hidden;
   max-height: 300px;
 }
 
-.pizza-image img {
+.food-image img {
   width: 100%;
 }
