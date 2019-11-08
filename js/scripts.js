@@ -108,5 +108,28 @@ console.log(order);
 
 $(document).ready(function() {
 
+  function hideCards() {
+    $("#welcome").hide();
+    $("#item-selection").hide();
+    $("#pizza-builder").hide();
+    $("#wing-builder").hide();
+    $("#shopping-cart").hide();
+  }
+
+  $("#add-pizza").click(function() {
+    const pizzaSizeInput = parseInt($("#pizza-size input:checked").val());
+    const vegInputs = $("#veggie-selections input:checked");
+    const meatInputs = $("#meat-selections input:checked");
+    const veggiesSelected = [];
+    const meatsSelected = [];
+    for (let i = 0; i < vegInputs.length; i++) {
+      veggiesSelected.push(vegInputs[i].id);
+    }
+    for (let i = 0; i < meatInputs.length; i++) {
+      meatsSelected.push(meatInputs[i].id);
+    }
+    const pizza = new Pizza(pizzaSizeInput, [veggiesSelected, meatsSelected]);
+    console.log(pizza);
+  });
 
 });
