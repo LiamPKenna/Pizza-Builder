@@ -4,6 +4,7 @@ body {
 
 .header {
   margin-top: 30px;
+  text-align: center;
 }
 
 .nav-primary {
@@ -11,6 +12,7 @@ body {
   background-color: #0f5c54;
   box-shadow: 0 0 0.8125rem 0 rgba(0, 0, 0, 0.75);
   height: 80px;
+  margin-bottom: 50px;
 }
 
 .nav-inner {
@@ -18,6 +20,7 @@ body {
   grid-template-columns: 1fr 1fr;
   height: 100%;
   color: #fff;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -26,9 +29,22 @@ body {
   font-size: 30px;
   color: #fff;
   margin: 15px;
+  width: 100%;
 }
 
 .icon {
   height: 90%;
-  margin-left: 300px;
+}
+
+.content {
+  margin: 15px auto;
+  padding: 15px;
+}
+
+.wing-wrap {
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding: 20px;
 }
