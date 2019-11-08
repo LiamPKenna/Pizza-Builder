@@ -97,7 +97,8 @@ body {
 }
 
 .order-item-heading {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 4fr 1fr;
+  background-color: #94b5b2;
 }
 
 .item-name {
@@ -123,3 +124,7 @@ body {
 .food-image img {
   width: 100%;
 }
+
+/* .order-item-details {
+  display: none;
+} */

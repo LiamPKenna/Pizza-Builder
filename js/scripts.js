@@ -1,6 +1,6 @@
 function Order() {
   this.items = []
-  this.orderTotal = 0;
+  this.orderTotal = 0.0;
   this.idCounter = 0;
 }
 
@@ -77,25 +77,53 @@ Wings.prototype.getCost = function() {
 
 const order = new Order();
 const pizza1 = new Pizza(14, [["spinach"],["ham", "bacon"]]);
-pizza1.addTopping(0,["olives","onions"]);
-const pizza2 = new Pizza(18, [["olives","green peppers"],["chicken"]]);
 const wings1 = new Wings(6);
-const wings2 = new Wings(12);
 
 
 order.addItem(pizza1);
-order.addItem(pizza2);
 order.addItem(wings1);
-order.addItem(wings2);
-console.log(pizza1);
-console.log(pizza2);
-console.log(order.getOrderTotal());
-order.removeItem(1);
-console.log(order.getOrderTotal());
 console.log(order);
 
 
 
+// TEMPLATING
+function buildCartItem(item) {
+  if (item.size) {
+    const vegToppingsHtml = item.toppings[0].map(topping => {
+      return `
+        <li class="list-group-item"><button type="button" class="btn btn-danger btn-sm" item="${item.id}" value="${topping}">X</button> ${topping}</li>
+      `
+    });
+    const meatToppingsHtml = item.toppings[0].map(topping => {
+      return `
+        <li class="list-group-item"><button type="button" class="btn btn-danger btn-sm" item="${item.id}" value="${topping}">X</button> ${topping}</li>
+      `
+    });
+    const allToppingsHtml = vegToppingsHtml.join('') + meatToppingsHtml.join('');
+    return `
+    <div class="card">
+      <div class="order-item-heading card-grid">
+        <h5 class="item-name"><button type="button" class="btn btn-danger btn-sm" value="${item.id}">X</button> ${item.size}" Pizza</h5>
+        <h5 class="item-price">$${item.cost.toFixed(2)}</h5>
+      </div>
+      <div class="order-item-details">
+        <ul class="list-group">
+          ${allToppingsHtml}
+        </ul>
+      </div>
+    </div>
+    `
+  } else {
+    return `
+    <div class="card">
+      <div class="order-item-heading card-grid">
+        <h5 class="item-name"><button type="button" class="btn btn-danger btn-sm" value="${item.id}">X</button> ${item.count} Count Wings</h5>
+        <h5 class="item-price">$${item.cost.toFixed(2)}</h5>
+      </div>
+    </div>
+    `
+  }
+}
 
 
 
@@ -103,9 +131,7 @@ console.log(order);
 
 
 
-
-
-
+// UI
 $(document).ready(function() {
 
   function hideCards() {
@@ -114,6 +140,16 @@ $(document).ready(function() {
     $("#pizza-builder").hide();
     $("#wing-builder").hide();
     $("#shopping-cart").hide();
+  }
+
+  function updateCart() {
+    const currentTotal = order.getOrderTotal();
+    const cartItems = order.items;
+    $("#cart-total").text(currentTotal.toFixed(2));
+    cartItems.forEach(item => {
+      const thisItem = buildCartItem(item);
+      $(".cart-items").append(thisItem);
+    });
   }
 
   $("#add-pizza").click(function() {
@@ -129,7 +165,22 @@ $(document).ready(function() {
       meatsSelected.push(meatInputs[i].id);
     }
     const pizza = new Pizza(pizzaSizeInput, [veggiesSelected, meatsSelected]);
-    console.log(pizza);
+    order.addItem(pizza);
+    updateCart()
+    // hideCards();
+    // $("#item-selection").fadeIn();
   });
+
+  $(".cart-items").on("click", ".btn-danger", function(event) {
+    if (isNaN(parseInt(this.value))) {
+      const thisItem = $(this).attr("item");
+      thisItem.removeTopping($(this).val());
+    } else {
+      order.removeItem(parseInt(this.value));
+    }
+    updateCart();
+  });
+
+  updateCart();
 
 });
