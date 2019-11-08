@@ -41,13 +41,20 @@ body {
   padding: 15px;
 }
 
-.wing-wrap {
+.card-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 4fr 1fr;
   grid-gap: 20px;
   padding: 20px;
+}
+
+.wing-wrap {
+  grid-template-columns: 4fr 1fr;
   text-align: center;
+}
+
+.pizza-wrap {
+  grid-template-columns: 1fr 1fr 2fr;
 }
 
 .card-header {
