@@ -181,6 +181,36 @@ $(document).ready(function() {
     // $("#item-selection").fadeIn();
   });
 
+  $("#add-wings").click(function() {
+    const sixCountInput = parseInt($("#wings-count-6").text());
+    const twelveCountInput = parseInt($("#wings-count-12").text());
+    for (var i = 0; i < sixCountInput; i++) {
+      const wings6 = new Wings(6);
+      order.addItem(wings6);
+    }
+    for (var i = 0; i < twelveCountInput; i++) {
+      const wings12 = new Wings(12);
+      order.addItem(wings12);
+    }
+    $("#wings-count-6").text('0');
+    $("#wings-count-12").text('0');
+    updateCart()
+    // hideCards();
+    // $("#item-selection").fadeIn();
+  });
+
+  $("#wing-6").click(function() {
+    let currentCount6 = parseInt($("#wings-count-6").text());
+    currentCount6++;
+    $("#wings-count-6").text(currentCount6);
+  });
+
+  $("#wing-12").click(function() {
+    let currentCount12 = parseInt($("#wings-count-12").text());
+    currentCount12++;
+    $("#wings-count-12").text(currentCount12);
+  });
+
   $(".cart-items").on("click", ".btn-danger", function(event) {
     if (isNaN(parseInt(this.value))) {
       const thisItemId = parseInt($(this).attr("item"));
