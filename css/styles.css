@@ -57,6 +57,19 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.add-item-wrap {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cart-wrap {
+  grid-template-columns: 2fr 1fr;
+}
+
+.cart-total {
+  padding-top: 10%;
+  text-align: center;
+}
+
 .current-pizza {
   text-align: center;
 }
@@ -70,10 +83,27 @@ body {
 }
 
 .running-total {
+  display: inline-block;
+  border: 1px solid lightgray;
+  padding: 3px;
+  margin:10px;
   color: red;
   font-weight: bold;
+  font-size: 30px;
 }
 
 .btn {
   margin: 5px;
+}
+
+.order-item-heading {
+  grid-template-columns: 1fr 1fr;
+}
+
+.item-name {
+  text-align: left;
+}
+
+.item-price {
+  text-align: right;
 }
