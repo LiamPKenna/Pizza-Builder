@@ -42,9 +42,23 @@ body {
 }
 
 .wing-wrap {
-  overflow: hidden;
   width: 100%;
   display: grid;
   grid-template-columns: 4fr 1fr;
+  grid-gap: 20px;
   padding: 20px;
+  text-align: center;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.running-total {
+  color: red;
+  font-weight: bold;
+}
+
+.btn {
+  margin: 5px;
 }
