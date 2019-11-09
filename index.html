@@ -5,23 +5,26 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
     <script src="js/scripts.js" type="text/javascript"></script>
-    <title>BUILD-A-PIZZA</title>
+    <title>JOE'S PIZZA</title>
   </head>
   <body>
     <div class="nav nav-primary">
       <div class="nav-wrap">
         <div class="nav-inner">
           <img id="cart-time" class="icon" src="img/cart.png" alt="Shopping Cart">
-          <p class="nav-text">Cart Total: $<span id="nav-total">o</span> </p>
+          <p class="nav-text">Cart Total: $<span id="nav-total">0.00</span> </p>
         </div>
+      </div>
+      <div class="logo">
+        <h2>JOE'S PIZZA</h2>
       </div>
     </div>
     <div class="container main">
       <div id="welcome" class="card content bg-light header">
-        <h1>Pizza Builder</h1>
-        <h3>Choose yer own PIZZA adventure</h3><br>
-        <img id="pizza-hero"src="img/pizza2.png" alt="pizza">
-        <button id="go-time" type="button" class="btn btn-dark btn-lg btn-block">Let's go!</button>
+        <h1>Joe's Pizza & Wings</h1>
+        <h3>Choose yer own PIZZA the adventure</h3><br>
+        <img id="pizza-hero"src="img/pizza2.png" alt="pizza"><br>
+        <button id="go-time" type="button" class="btn btn-dark btn-lg btn-block go-time">Let's go!</button>
       </div>
       <div id="item-selection" class="card content bg-light">
         <div class="card-header">
@@ -35,6 +38,7 @@
             <button id="wing-time" type="button" class="btn btn-dark btn-lg btn-block">Add some Wings</button>
           </div>
         </div>
+        <img class="hero-image" src="img\pizzaAndWings.jpg" alt="Pizza and Wings">
       </div>
       <div id="pizza-builder" class="card content bg-light">
         <div class="card-header">
@@ -174,6 +178,7 @@
           </div>
         </div>
         <button type="button" class="btn btn-dark btn-lg btn-block">Submit Your Order</button>
+        <button type="button" class="btn btn-dark btn-lg btn-block go-time">Keep Shopping</button>
       </div>
     </div>
   </body>

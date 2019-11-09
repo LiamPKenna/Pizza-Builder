@@ -227,10 +227,15 @@ $(document).ready(function() {
     $("#shopping-cart").fadeIn();
   })
 
-  $("#go-time").click(function() {
+  $(".go-time").click(function() {
     hideCards();
     $("#item-selection").fadeIn();
   })
+
+  $(".logo").click(function() {
+    hideCards();
+    $("#welcome").fadeIn();
+  });
 
   hideCards();
   $("#welcome").fadeIn();
