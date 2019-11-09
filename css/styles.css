@@ -54,6 +54,12 @@ body {
   max-width: 1200px;
 }
 
+.pAndW {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+}
+
 .logo {
   position: absolute;
   right: 0;
@@ -75,15 +81,15 @@ body {
 }
 
 .wing-wrap {
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr 4fr;
   text-align: center;
 }
 
 .pizza-wrap {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
-.add-item-wrap, .topping-wrap {
+.add-item-wrap, .topping-wrap, .pizza-topping-wrap {
   grid-template-columns: 1fr 1fr;
 }
 
@@ -187,21 +193,26 @@ li {
   padding: 20px;
 }
 
-/* .order-item-details {
-  display: none;
-} */
-
 @media (max-width: 500px) {
   .nav-text {
     display: none;
   }
 
   .pizza-wrap {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .wing-wrap, .cart-wrap {
     grid-template-columns: 1fr;
+  }
+
+  .card-grid {
+    padding: 8px;
+    grid-gap: 8px;
+  }
+
+  .nav-primary {
+    margin-bottom: 20px;
   }
 
 }
