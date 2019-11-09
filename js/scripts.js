@@ -213,10 +213,15 @@ $(document).ready(function() {
       const thisItemId = parseInt($(this).attr("item"));
       const thisItem = order.findItem(thisItemId);
       thisItem.removeTopping($(this).val());
+      updateCart();
+      $(`.details${thisItemId}`).show();
+      $(`#show-details${thisItemId}`).hide();
+      $(`#hide-details${thisItemId}`).show();
+      $(`#show-topping-modal${thisItemId}`).show();
     } else {
       order.removeItem(parseInt(this.value));
+      updateCart();
     }
-    updateCart();
   });
 
   $("#pizza-time").click(function() {
@@ -256,7 +261,7 @@ $(document).ready(function() {
 
   $(".cart-wrap").on("click", ".show-details", function() {
     const itemId = $(this).attr("value");
-    $(`.details${itemId}`).fadeIn();
+    $(`.details${itemId}`).slideDown();
     $(`#show-details${itemId}`).hide();
     $(`#hide-details${itemId}`).fadeIn();
     $(`#show-topping-modal${itemId}`).fadeIn();
@@ -264,7 +269,7 @@ $(document).ready(function() {
 
   $(".cart-wrap").on("click", ".hide-details", function() {
     const itemId = $(this).attr("value");
-    $(`.details${itemId}`).hide();
+    $(`.details${itemId}`).slideUp();
     $(`#show-details${itemId}`).fadeIn();
     $(`#hide-details${itemId}`).hide();
     $(`#show-topping-modal${itemId}`).hide();
