@@ -297,6 +297,10 @@ $(document).ready(function() {
     updateCart();
     $("input:checkbox").prop('checked', false);
     $(".topping-modal").modal("hide");
+    $(`.details${itemId}`).show();
+    $(`#show-details${itemId}`).hide();
+    $(`#hide-details${itemId}`).show();
+    $(`#show-topping-modal${itemId}`).show();
   });
 
   hideCards();
