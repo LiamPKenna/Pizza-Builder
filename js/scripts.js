@@ -1,8 +1,9 @@
+// MAIN LOGIC
 function Order() {
   this.items = []
   this.orderTotal = 0.0;
   this.idCounter = 0;
-}
+};
 
 Order.prototype.addItem = function(item) {
   item.id = this.idCounter;
@@ -15,7 +16,7 @@ Order.prototype.removeItem = function(id) {
   const newItemsList = this.items.filter(item => item.id != id);
   this.items = newItemsList;
   return this.items;
-}
+};
 
 Order.prototype.getOrderTotal = function() {
   let newTotal = 0;
@@ -30,18 +31,18 @@ Order.prototype.findItem = function(id) {
       return this.items[i];
     };
   }
-}
+};
 
 function Pizza(size, toppings) {
   this.size = size;
   this.toppings = toppings;
   this.cost = this.getCost();
-}
+};
 
 Pizza.prototype.getCost = function() {
   const toppingCost = (toppingIndex, pricePerTopping) => {
     return this.toppings[toppingIndex].length * pricePerTopping;
-  }
+  };
   let basePrice = 9
   if (this.size === 18) {
     basePrice = 16
@@ -73,7 +74,7 @@ Pizza.prototype.removeTopping = function (topping) {
 function Wings(count) {
   this.count = count;
   this.cost = this.getCost();
-}
+};
 
 Wings.prototype.getCost = function() {
   let basePrice = 6;
@@ -85,8 +86,6 @@ Wings.prototype.getCost = function() {
 
 // GLOBAL VARIABLE
 const order = new Order();
-const pizzaTest = new Pizza(12, [["Spinach","Olives","Onions"],["Ham","Bacon"]]);
-order.addItem(pizzaTest);
 
 
 // TEMPLATING
@@ -131,7 +130,7 @@ function buildCartItem(item) {
     </div>
     `
   }
-}
+};
 
 
 // UI
@@ -143,7 +142,7 @@ $(document).ready(function() {
     $("#pizza-builder").hide();
     $("#wing-builder").hide();
     $("#shopping-cart").hide();
-  }
+  };
 
   function updateCart() {
     const currentTotal = order.getOrderTotal().toFixed(2);
@@ -156,7 +155,7 @@ $(document).ready(function() {
       const thisItem = buildCartItem(item);
       $(".cart-items").append(thisItem);
     });
-  }
+  };
 
   $("#add-pizza").click(function() {
     const pizzaSizeInput = parseInt($("#pizza-size input:checked").val());
@@ -227,22 +226,22 @@ $(document).ready(function() {
   $("#pizza-time").click(function() {
     hideCards();
     $("#pizza-builder").fadeIn();
-  })
+  });
 
   $("#wing-time").click(function() {
     hideCards();
     $("#wing-builder").fadeIn();
-  })
+  });
 
   $("#cart-time").click(function() {
     hideCards();
     $("#shopping-cart").fadeIn();
-  })
+  });
 
   $(".go-time").click(function() {
     hideCards();
     $("#item-selection").fadeIn();
-  })
+  });
 
   $(".logo").click(function() {
     hideCards();
@@ -253,11 +252,11 @@ $(document).ready(function() {
     const currentTotal = order.getOrderTotal().toFixed(2);
     $("#final-price").text(currentTotal);
     $(".payment-modal").modal("show")
-  })
+  });
 
   $("#start-over").click(function() {
     location.reload();
-  })
+  });
 
   $(".cart-wrap").on("click", ".show-details", function() {
     const itemId = $(this).attr("value");
@@ -295,13 +294,12 @@ $(document).ready(function() {
     const thisItem = order.findItem(itemId);
     thisItem.addTopping(0, veggiesSelected);
     thisItem.addTopping(1, meatsSelected);
-    updateCart()
+    updateCart();
     $("input:checkbox").prop('checked', false);
     $(".topping-modal").modal("hide");
   });
 
   hideCards();
   $("#welcome").fadeIn();
-
 
 });
