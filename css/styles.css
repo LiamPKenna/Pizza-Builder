@@ -83,7 +83,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.add-item-wrap {
+.add-item-wrap, .topping-wrap {
   grid-template-columns: 1fr 1fr;
 }
 
@@ -144,6 +144,34 @@ li {
   height: 100%;
   max-width: 300px;
   margin: 15px auto;
+}
+
+#hidden-id {
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 2px;
+}
+
+.list-group {
+  display: none;
+}
+
+.details-add-topping {
+  text-align: center;
+  background-color: #d8ebe9;
+  font-size: 12px;
+  height: 20px;
+}
+
+.show-topping-modal {
+  display: none;
+  margin-right: 10px;
+}
+
+.hide-details {
+  display: none;
+  margin-left: 10px;
 }
 
 .food-image {

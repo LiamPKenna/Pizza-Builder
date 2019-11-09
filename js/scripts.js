@@ -85,6 +85,8 @@ Wings.prototype.getCost = function() {
 
 // GLOBAL VARIABLE
 const order = new Order();
+const pizzaTest = new Pizza(12, [["Spinach","Olives","Onions"],["Ham","Bacon"]]);
+order.addItem(pizzaTest);
 
 
 // TEMPLATING
@@ -108,9 +110,14 @@ function buildCartItem(item) {
         <h5 class="item-price">$${item.cost.toFixed(2)}</h5>
       </div>
       <div class="order-item-details">
-        <ul class="list-group">
+        <ul class="list-group details${item.id}">
           ${allToppingsHtml}
         </ul>
+      </div>
+      <div class="details-add-topping">
+        <span class="show-details" id="show-details${item.id}" value="${item.id}">SHOW DETAILS</span>
+        <span class="show-topping-modal" id="show-topping-modal${item.id}" value="${item.id}">ADD TOPPINGS</span>
+        <span class="hide-details" id="hide-details${item.id}" value="${item.id}">HIDE DETAILS</span>
       </div>
     </div>
     `
@@ -184,7 +191,7 @@ $(document).ready(function() {
     }
     $("#wings-count-6").text('0');
     $("#wings-count-12").text('0');
-    updateCart()
+    updateCart();
     hideCards();
     $("#item-selection").fadeIn();
   });
@@ -247,7 +254,49 @@ $(document).ready(function() {
     location.reload();
   })
 
+  $(".cart-wrap").on("click", ".show-details", function() {
+    const itemId = $(this).attr("value");
+    $(`.details${itemId}`).fadeIn();
+    $(`#show-details${itemId}`).hide();
+    $(`#hide-details${itemId}`).fadeIn();
+    $(`#show-topping-modal${itemId}`).fadeIn();
+  });
+
+  $(".cart-wrap").on("click", ".hide-details", function() {
+    const itemId = $(this).attr("value");
+    $(`.details${itemId}`).hide();
+    $(`#show-details${itemId}`).fadeIn();
+    $(`#hide-details${itemId}`).hide();
+    $(`#show-topping-modal${itemId}`).hide();
+  });
+
+  $(".cart-wrap").on("click", ".show-topping-modal", function() {
+    $("#hidden-id").text($(this).attr("value"));
+    $(".topping-modal").modal("show");
+  });
+
+  $("#add-toppings").click(function() {
+    const vegInputs = $("#veggie-toppings input:checked");
+    const meatInputs = $("#meat-toppings input:checked");
+    const veggiesSelected = [];
+    const meatsSelected = [];
+    for (let i = 0; i < vegInputs.length; i++) {
+      veggiesSelected.push(vegInputs[i].value);
+    }
+    for (let i = 0; i < meatInputs.length; i++) {
+      meatsSelected.push(meatInputs[i].value);
+    }
+    const itemId = parseInt($("#hidden-id").text());
+    const thisItem = order.findItem(itemId);
+    thisItem.addTopping(0, veggiesSelected);
+    thisItem.addTopping(1, meatsSelected);
+    updateCart()
+    $("input:checkbox").prop('checked', false);
+    $(".topping-modal").modal("hide");
+  });
+
   hideCards();
   $("#welcome").fadeIn();
+
 
 });

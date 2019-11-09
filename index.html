@@ -182,12 +182,95 @@
         <button type="button" class="btn btn-dark btn-lg btn-block go-time">Keep Shopping</button>
       </div>
     </div>
-    <div class="payment-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="noNameAlertModal" aria-hidden="true">
+    <div class="payment-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="paymentModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <h2>Your total is $<span id="final-price"></span></h2>
           <h2>Thank you for your order!<br>We'll have it ready for you in about 20min!</h2>
           <button id="start-over" type="button" class="btn btn-dark btn-lg btn-block">Order Again</button>
+        </div>
+      </div>
+    </div>
+    <div class="topping-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="toppingModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <h2>Choose Additional Toppings</h2>
+          <p id="hidden-id">2</p>
+          <div class="topping-wrap card-grid">
+            <div class="options-meat form-check">
+              <form id="meat-toppings">
+                <input class="form-check-input" type="checkbox" value="Ham">
+                <label class="form-check-label" for="Ham">
+                  Ham
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Beef">
+                <label class="form-check-label" for="Beef">
+                  Beef
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Salami">
+                <label class="form-check-label" for="Salami">
+                  Salami
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Pepperoni">
+                <label class="form-check-label" for="Pepperoni">
+                  Pepperoni
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Sausage">
+                <label class="form-check-label" for="Sausage">
+                  Sausage
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Chicken">
+                <label class="form-check-label" for="Chicken">
+                  Chicken
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Bacon">
+                <label class="form-check-label" for="Bacon">
+                  Bacon
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Tempeh">
+                <label class="form-check-label" for="Tempeh">
+                  Tempeh
+                </label><br>
+              </form>
+            </div>
+            <div class="options-veggie form-check">
+              <form id="veggie-toppings">
+                <input class="form-check-input" type="checkbox" value="Onions">
+                <label class="form-check-label" for="Onions">
+                  Onions
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Olives">
+                <label class="form-check-label" for="Olives">
+                  Olives
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Mushrooms">
+                <label class="form-check-label" for="Mushrooms">
+                  Mushrooms
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Spinach">
+                <label class="form-check-label" for="Spinach">
+                  Spinach
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Green Peppers">
+                <label class="form-check-label" for="Green Peppers">
+                  Green Peppers
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Pineapple">
+                <label class="form-check-label" for="Pineapple">
+                  Pineapple
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Tomatoes">
+                <label class="form-check-label" for="Tomatoes">
+                  Tomatoes
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="Jalapenos">
+                <label class="form-check-label" for="Jalapenos">
+                  Jalapenos
+                </label><br>
+              </form>
+            </div>
+          </div>
+          <button id="add-toppings" type="button" class="btn btn-dark btn-lg btn-block">Add Toppings</button>
         </div>
       </div>
     </div>
