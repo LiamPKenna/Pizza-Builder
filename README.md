@@ -1,4 +1,4 @@
-# _Pizza Builder_
+# _Pizza Builder & Shopping Cart App_
 
 #### _Web application allowing users to order custom pizza, November 8th 2019_
 
@@ -6,23 +6,12 @@
 
 ## Description
 
-_This site is a web application allowing users to order custom pizza_
-
-* _{DETAILS}_
-
-_For example:_
-
-| Input:  | Output:   |
-|---|---|
-|||
-|||
-
-_{DETAILS}_
+_This site is a web application allowing users to order custom pizza and wings from a fictional pizza place.  It was build using OOJS with all state held in a single Order object_
 
 ## Setup/Installation Requirements
 
 * _Clone to local machine and open index.html in the browser_
-* _This site can be viewed in it's current form at https://LiamPKenna.github.io/wk3_
+* _This site can be viewed in it's current form at https://LiamPKenna.github.io/wk4_
 
 
 _To explore the source code, feel free to browse on github or clone to your local machine_
