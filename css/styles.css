@@ -155,6 +155,10 @@ li {
   width: 100%;
 }
 
+.modal-content {
+  padding: 20px;
+}
+
 /* .order-item-details {
   display: none;
 } */

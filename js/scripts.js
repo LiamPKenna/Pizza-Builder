@@ -139,10 +139,10 @@ $(document).ready(function() {
   }
 
   function updateCart() {
-    const currentTotal = order.getOrderTotal();
+    const currentTotal = order.getOrderTotal().toFixed(2);
     const cartItems = order.items;
-    $("#cart-total").text(currentTotal.toFixed(2));
-    $("#nav-total").text(currentTotal.toFixed(2));
+    $("#cart-total").text(currentTotal);
+    $("#nav-total").text(currentTotal);
     $(".cart-items").text('');
     $(".nav-wrap").fadeIn();
     cartItems.forEach(item => {
@@ -237,8 +237,17 @@ $(document).ready(function() {
     $("#welcome").fadeIn();
   });
 
+  $("#payment-button").click(function() {
+    const currentTotal = order.getOrderTotal().toFixed(2);
+    $("#final-price").text(currentTotal);
+    $(".payment-modal").modal("show")
+  })
+
+  $("#start-over").click(function() {
+    location.reload();
+  })
+
   hideCards();
   $("#welcome").fadeIn();
-
 
 });
