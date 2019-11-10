@@ -170,6 +170,10 @@ li {
   height: 20px;
 }
 
+.show-details, .show-topping-modal, .hide-details {
+  cursor: pointer;
+}
+
 .show-topping-modal {
   display: none;
   margin-right: 10px;
