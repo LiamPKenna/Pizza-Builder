@@ -58,11 +58,7 @@ Pizza.prototype.getCost = function() {
   return totalCost;
 };
 
-Pizza.prototype.addTopping = function(vegOrMeatIndex, toppingArray) {
-  const existingToppings = this.toppings[vegOrMeatIndex];
-  this.toppings[vegOrMeatIndex] = existingToppings.concat(toppingArray);
-  return this.getCost();
-};
+
 
 Pizza.prototype.removeTopping = function (topping) {
   const vegToppings = this.toppings[0].filter(t => t != topping);
@@ -115,7 +111,7 @@ function buildCartItem(item) {
       </div>
       <div class="details-add-topping">
         <span class="show-details" id="show-details${item.id}" value="${item.id}">SHOW DETAILS</span>
-        <span class="show-topping-modal" id="show-topping-modal${item.id}" value="${item.id}">ADD TOPPINGS</span>
+        <span class="show-topping-modal" id="show-topping-modal${item.id}" value="${item.id}">EDIT TOPPINGS</span>
         <span class="hide-details" id="hide-details${item.id}" value="${item.id}">HIDE DETAILS</span>
       </div>
     </div>
@@ -275,7 +271,25 @@ $(document).ready(function() {
   });
 
   $(".cart-wrap").on("click", ".show-topping-modal", function() {
-    $("#hidden-id").text($(this).attr("value"));
+    const thisItemId = parseInt($(this).attr("value"));
+    const thisItem = order.findItem(thisItemId);
+    const vegInputs = $("#veggie-toppings input");
+    const meatInputs = $("#meat-toppings input");
+    thisItem.toppings[0].forEach(veg => {
+      for (var i = 0; i < vegInputs.length; i++) {
+        if (vegInputs[i].value === veg) {
+          $(vegInputs[i]).prop('checked', true);
+        }
+      }
+    });
+    thisItem.toppings[1].forEach(meat => {
+      for (var i = 0; i < meatInputs.length; i++) {
+        if (meatInputs[i].value === meat) {
+          $(meatInputs[i]).prop('checked', true);
+        }
+      }
+    });
+    $("#hidden-id").text(thisItemId);
     $(".topping-modal").modal("show");
   });
 
@@ -292,12 +306,12 @@ $(document).ready(function() {
     }
     const itemId = parseInt($("#hidden-id").text());
     const thisItem = order.findItem(itemId);
-    thisItem.addTopping(0, veggiesSelected);
-    thisItem.addTopping(1, meatsSelected);
+    thisItem.toppings = [veggiesSelected, meatsSelected];
+    thisItem.getCost();
     updateCart();
     $("input:checkbox").prop('checked', false);
     $(".topping-modal").modal("hide");
-    $(`.details${itemId}`).show();
+    $(`.details${itemId}`).slideDown();
     $(`#show-details${itemId}`).hide();
     $(`#hide-details${itemId}`).show();
     $(`#show-topping-modal${itemId}`).show();
